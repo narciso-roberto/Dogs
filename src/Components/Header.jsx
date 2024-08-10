@@ -5,6 +5,7 @@ import Dogs from '../Assets/Dogs.jsx';
 import { UserContext } from '../UserContext.jsx';
 
 
+
 const Header = () => {
   const {data,userLogout} = React.useContext(UserContext)
   return (
@@ -19,7 +20,6 @@ const Header = () => {
         (
         <Link to="/conta" className={styles.login} >
           {data.nome}
-          <button onClick={userLogout}>Sair</button>
         </Link>
         ) :
         (
