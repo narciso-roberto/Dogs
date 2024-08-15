@@ -27,7 +27,7 @@ const LoginForm = () => {
       <form action='' onSubmit={handleSubmit}>
         <Input label='Usuario' type='text' name='username' {...username}/>
         <Input label='Senha' type='password' name='password' {...password}/>
-        {loading ? <Button disabled>Carregando...</Button> : <Button>Entrar</Button>}
+        {loading ? <Button disabled>Carregando.......</Button> : <Button>Entrar</Button>}
         <Error error={error}/>
       </form>
       <Link className={styles.perdeu} to="/login/perdeu">
