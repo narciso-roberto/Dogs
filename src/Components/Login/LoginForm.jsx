@@ -14,7 +14,6 @@ const LoginForm = () => {
 
     const {userLogin,error,loading} = React.useContext(UserContext)
 
-
     async function handleSubmit(event){
         event.preventDefault();
         if(username.validate() && password.validate()){
