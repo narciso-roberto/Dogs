@@ -28,8 +28,8 @@ const LoginCreate = () => {
       password: password.value, 
     })
     const {response} = await request(url, options)
-    if(response){
-      userLogin();
+    if(response.ok){
+      userLogin(username.value,password.value);
     }
     
   }

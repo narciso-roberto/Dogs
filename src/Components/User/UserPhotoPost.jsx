@@ -5,32 +5,41 @@ import Button from '../Forms/Button'
 import useForm from '../../Hooks/useForm'
 import useFetch from '../../Hooks/useFetch'
 import { PHOTO_POST } from '../../api'
+import { useNavigate } from 'react-router-dom';
+
 
 const UserPhotoPost = () => {
 
-  const nome = useForm()
-  const peso = useForm('number')
-  const idade = useForm('number')
-  const [img,setImg] = React.useState({})
-  const {data,error,loading,request} = useFetch()
+  const nome = useForm();
+  const peso = useForm('number');
+  const idade = useForm('number');
+  const [img, setImg] = React.useState({});
+  const { data, error, loading, request } = useFetch();
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (data) navigate('/conta');
+  }, [data, navigate]);
+
 
   function handleSubmit(event){
     event.preventDefault();
-    const formData = new FormData()
-    formData.append("img",img.raw);
-    formData.append("img",nome.value);
-    formData.append("img",peso.value);
-    formData.append("img",idade.value);
+    const formData = new FormData();
+    formData.append('img', img.raw);
+    formData.append('nome', nome.value);
+    formData.append('peso', peso.value);
+    formData.append('idade', idade.value);
 
-    const token = window.localStorage.getItem('token')
-    const {url,options} = PHOTO_POST(formData,token)
-    request(url,options);
+    const token = window.localStorage.getItem('token');
+    const { url, options } = PHOTO_POST(formData, token);
+    request(url, options);
+    navigate("/conta")
   }
-
 
   function handleImgChange({target}){
-      setImg({raw: target.files[0]})
+      setImg({raw: target.files[0],preview:target.files[0]})
   }
+
 
   return (
     <section className={`${style.photoPost} animeLeft`}>
@@ -39,8 +48,15 @@ const UserPhotoPost = () => {
           <Input label="Peso" type="number" name="peso" {...peso}/>
           <Input label="Idade" type="number" name="idade"  {...idade}/>
           <Input label="Img" type="file" name="img" onChange={handleImgChange}/>
-          <Button>Enviar</Button>
+          {loading ? (<Button>Enviando...</Button>) : (<Button>Enviar</Button>)}
       </form>
+      <div>
+        {img.preview && (
+          <div className={style.preview} style={{backgroundImage: `url(${URL.createObjectURL(img.preview)})`}}>
+          </div>
+          )}
+      </div>
+      
     </section>
   )
 }
