@@ -15,9 +15,10 @@
   border-radius: 0.2rem;
   overflow: hidden;
   cursor: pointer;
+
 }
 
-.photo img {
+.photo div {
   grid-area: 1/1;
 }
 
@@ -43,4 +44,5 @@
 
 .photo:hover .visualizacao {
   display: flex;
+
 }

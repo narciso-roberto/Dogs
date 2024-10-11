@@ -22,7 +22,7 @@ const UserPhotoPost = () => {
   }, [data, navigate]);
 
 
-  function handleSubmit(event){
+  async function handleSubmit(event){
     event.preventDefault();
     const formData = new FormData();
     formData.append('img', img.raw);
@@ -32,7 +32,7 @@ const UserPhotoPost = () => {
 
     const token = window.localStorage.getItem('token');
     const { url, options } = PHOTO_POST(formData, token);
-    request(url, options);
+    await request(url, options);
     navigate("/conta")
   }
 
