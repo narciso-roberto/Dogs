@@ -6,6 +6,7 @@ import useForm from '../../Hooks/useForm'
 import { USER_POST } from "../../api.jsx";
 import { UserContext } from "../../UserContext.jsx"
 import useFetch from '../../Hooks/useFetch.jsx';
+import Head from '../Helper/Head.jsx'
 
 
 
@@ -39,6 +40,7 @@ const LoginCreate = () => {
 
   return (
     <section className='animeLeft'>
+      <Head title="Cadastro"/>
       <h1 className='title'>Cadastre-se</h1>
       <form onSubmit={handleSubmit}>
         <Input label="Usuário" type="text" name="username" {...username} />
